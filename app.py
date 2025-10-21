@@ -6,10 +6,11 @@ app = Flask(__name__)
 # Connexion à la base de données
 def get_db_connection():
     return mysql.connector.connect(
-        host="DB_HOST",
-        user="DB_USER",       # change si tu as un autre utilisateur
-        password="DB_PASSWORD",       # mets ton mot de passe MySQL si tu en as un
-        database="DB_NAME"
+        host=os.getenv("DB_HOST"),
+        database=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        port=os.getenv("DB_PORT")
     )
 
 # Page d’accueil
@@ -42,4 +43,5 @@ def merci():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
